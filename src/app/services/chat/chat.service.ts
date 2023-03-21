@@ -11,7 +11,7 @@ export class ChatService {
   private url = 'http://localhost:3000';
 
   constructor() {
-    this.socket = io(this.url);
+    this.socket = io(this.url, {transports: ['websocket', 'polling', 'flashsocket']});
   }
 
   joinRoom(data: any): void {
@@ -32,5 +32,14 @@ export class ChatService {
         this.socket.disconnect()
       }
     })
+  }
+
+  getStorage() {
+    const storage = localStorage.getItem('chats');
+    return storage ? JSON.parse(storage) : [];
+  }
+
+  setStorage(data: any) {
+    localStorage.setItem('chats', JSON.stringify(data))
   }
 }
