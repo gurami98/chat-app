@@ -146,6 +146,7 @@ export class AppComponent implements OnInit, AfterViewInit{
         user: this.currentUser.name,
         message: this.messageText
       })
+      this.messageArray = this.storageArray[storeIndex].chats;
     } else {
       const updatedStorage = {
         roomId: this.roomId,
@@ -155,6 +156,7 @@ export class AppComponent implements OnInit, AfterViewInit{
         }]
       };
 
+      this.messageArray = updatedStorage.chats;
       this.storageArray.push(updatedStorage)
     }
 
