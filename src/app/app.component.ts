@@ -85,6 +85,7 @@ export class AppComponent implements OnInit, AfterViewInit{
         console.log(data, 'data');
         if (this.roomId) {
           setTimeout(() => {
+            this.scrollToBottom();
             this.storageArray = this.chatService.getStorage();
             const storeIndex = this.storageArray.findIndex((storage: any) => storage.roomId === this.roomId)
             this.messageArray = this.storageArray[storeIndex].chats;
@@ -112,7 +113,15 @@ export class AppComponent implements OnInit, AfterViewInit{
     }
   }
 
+  scrollToBottom() {
+    setTimeout(() => {
+      const footerEl = document.getElementById('footer');
+      footerEl?.scrollIntoView({behavior: "smooth", block: "end", inline: "end"})
+    })
+  }
+
   selectUserHandler(phone: string): void {
+    this.scrollToBottom();
     this.selectedUser = this.userList.find(user => user.phone === phone);
     this.roomId = this.selectedUser.roomId[this.currentUser.id];
     this.messageArray = [];
@@ -132,6 +141,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   sendMessage(): void {
+    this.scrollToBottom();
     this.chatService.sendMessage({
       user: this.currentUser.name,
       room: this.roomId,
@@ -163,6 +173,4 @@ export class AppComponent implements OnInit, AfterViewInit{
     this.chatService.setStorage(this.storageArray);
     this.messageText = '';
   }
-
-
 }
