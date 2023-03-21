@@ -14,11 +14,11 @@ export class ChatService {
     this.socket = io(this.url);
   }
 
-  joinRoom(data): void {
+  joinRoom(data: any): void {
     this.socket.emit('join', data);
   }
 
-  sendMessage(data): void {
+  sendMessage(data: any): void {
     this.socket.emit('message', data);
   }
 
