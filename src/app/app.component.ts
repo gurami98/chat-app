@@ -104,8 +104,8 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   login(dismiss: any): void {
-    this.currentUser = this.userList.find(user => user.phone === this.phone.toString());
-    this.userList = this.userList.filter((user) => user.phone !== this.phone.toString())
+    this.currentUser = this.userList.find((user: any) => user.phone === this.phone.toString());
+    this.userList = this.userList.filter((user: any) => user.phone !== this.phone.toString())
 
     if (this.currentUser) {
       this.showScreen = true;
@@ -172,5 +172,6 @@ export class AppComponent implements OnInit, AfterViewInit{
 
     this.chatService.setStorage(this.storageArray);
     this.messageText = '';
+    console.log('dsadsa')
   }
 }

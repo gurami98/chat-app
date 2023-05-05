@@ -22,7 +22,7 @@ export class ChatService {
     this.socket.emit('message', data);
   }
 
-  getMessage(): Observable<any> {
+  getMessage(): Observable<IMessage> {
     return new Observable<IMessage>(observer => {
       this.socket.on('new message', (data) => {
         observer.next(data);
